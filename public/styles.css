@@ -2,6 +2,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  overflow-x: none;
+  overflow-y: none;
 }
 html {
   font-family: "Montserrat", sans-serif;
