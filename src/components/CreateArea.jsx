@@ -44,13 +44,15 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    setExpanded(!isExpanded);
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: ""
-    });
-    event.preventDefault();
+    if(!note.title==="" && !note.content===""){
+      setExpanded(!isExpanded);
+      props.onAdd(note);
+      setNote({
+        title: "",
+        content: ""
+      });
+      event.preventDefault();
+    }
   }
 
   function expand() {
