@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
@@ -11,26 +11,26 @@ function CreateArea(props) {
     content: ""
   });
 
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      console.log(ref);
-        /**
-         * Alert if clicked on outside of element
-         */
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-                setExpanded(false);
-            }
-        }
+//   function useOutsideAlerter(ref) {
+//     useEffect(() => {
+//       console.log(ref);
+//         /**
+//          * Alert if clicked on outside of element
+//          */
+//         function handleClickOutside(event) {
+//             if (ref.current && !ref.current.contains(event.target)) {
+//                 setExpanded(false);
+//             }
+//         }
 
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
-}
+//         // Bind the event listener
+//         document.addEventListener("mousedown", handleClickOutside);
+//         return () => {
+//             // Unbind the event listener on clean up
+//             document.removeEventListener("mousedown", handleClickOutside);
+//         };
+//     }, [ref]);
+// }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -44,7 +44,7 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    if(!note.title==="" && !note.content===""){
+    if(!(note.title==="" || note.content==="")){
       setExpanded(!isExpanded);
       props.onAdd(note);
       setNote({
@@ -59,8 +59,8 @@ function CreateArea(props) {
     setExpanded(true);
   }
 
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  // const wrapperRef = useRef(null);
+  // useOutsideAlerter(wrapperRef);
 
   return (
     <div>
@@ -71,7 +71,7 @@ function CreateArea(props) {
             onChange={handleChange}
             value={note.title}
             placeholder="Title"
-            ref={wrapperRef}
+            // ref={wrapperRef}
           />
         )}
 
